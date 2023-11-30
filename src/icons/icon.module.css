@@ -1,0 +1,16 @@
+.headerLogo {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.plusIconBg {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background-color: #4f5155;
+  width: 24px;
+  height: 24px;
+  border-radius: 8px;
+}

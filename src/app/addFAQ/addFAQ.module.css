@@ -1,0 +1,123 @@
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.modalWrapper {
+  text-align: left;
+
+  padding: 24px;
+  width: 444px;
+  box-sizing: border-box;
+  border-radius: 14px;
+  background: #23262a;
+}
+
+.modalTitle {
+  display: flex;
+  justify-content: space-between;
+}
+
+.modalTitleText {
+  color: #fff;
+  font-family: var(--font-literata);
+  text-align: left;
+  font-size: 30px;
+  font-weight: 700;
+  text-transform: capitalize;
+}
+
+.formulationsText {
+  margin-top: 12px;
+
+  color: #fff;
+  font-family: var(--font-literata);
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.formuList ul {
+  list-style: none;
+}
+
+.inputWrapper,
+.formuList ul li {
+  border-radius: 10px;
+  background: #1f2129;
+  height: 42px;
+  padding: 6px 12px;
+  margin-bottom: 3px;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.modelContent input {
+  background: none;
+  border: none;
+  outline: none;
+
+  color: #fff;
+
+  font-family: var(--font-literata);
+  font-size: 12px;
+
+  opacity: 0.3;
+}
+
+.formuDeleteIcon {
+  display: flex;
+  align-items: center;
+}
+
+.plusIconWrapper {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 12px;
+}
+
+.plusIcon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 24px;
+  height: 24px;
+  background-color: #4f5155;
+  border-radius: 8px;
+}
+
+.divider {
+  margin: 24px 0;
+  width: 100%;
+  height: 1px;
+  background-color: #e1e1e6;
+}
+
+.answerHeader {
+  color: #fff;
+
+  font-family: var(--font-plus);
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.modalAction {
+  margin-top: 24px;
+
+  display: flex;
+  justify-content: flex-end;
+}
+
+.modalAction button {
+  width: 110px;
+  height: 45px;
+}
