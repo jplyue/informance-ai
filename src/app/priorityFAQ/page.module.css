@@ -125,6 +125,7 @@
   text-transform: uppercase;
 
   margin-bottom: 20px;
+  padding-left: 12px;
 }
 
 .sectionList ul {
@@ -135,8 +136,16 @@
   padding: 14px 16px;
 }
 
+.active .sectionItem span {
+  color: #d7ff1f;
+}
+
 .level2 .sectionItem {
   padding-left: 38px;
+}
+
+.active .level2 .sectionItem span {
+  color: #fff;
 }
 
 .sectionItem,
@@ -183,10 +192,6 @@
   );
 }
 
-.active .sectionItem span {
-  color: #d7ff1f;
-}
-
 .tagTail {
   display: flex;
   align-items: center;
@@ -195,6 +200,8 @@
 
 .tagTail::after {
   content: attr(data-content);
+
+  margin-left: auto;
 
   color: var(--noble-black-300, #9b9c9e);
   text-align: center;
@@ -234,7 +241,7 @@
 }
 
 .addPluginsText {
-  margin-left: 16px;
+  margin-left: 3px;
 }
 
 /**
