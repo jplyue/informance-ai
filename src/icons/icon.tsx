@@ -374,7 +374,7 @@ export const CloseIcon = () => (
       strokeWidth="1.5"
       strokeLinecap="round"
       strokeLinejoin="round"
-      stroke-dasharray="1 2.5"
+      strokeDasharray="1 2.5"
     />
   </svg>
 )
@@ -406,7 +406,7 @@ export const PlusIcon = () => (
       viewBox="0 0 34 34"
       fill="none"
     >
-      <g clip-path="url(#clip0_443_5533)">
+      <g clipPath="url(#clip0_443_5533)">
         <path
           d="M8.54387 16.9705H25.5144M17.0292 8.48523V25.4558"
           stroke="#D7FF1F"

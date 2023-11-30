@@ -1,26 +1,38 @@
 'use client'
 
 import React, { useState } from 'react'
+import { observer } from 'mobx-react'
 
 import {
   WarningIcon,
   FullScreenIcon,
   EditIcon,
   DeleteIcon,
-  UploadIcon,
   SearchIcon,
 } from 'src/icons/icon'
 import { inconsolata, literata } from 'src/app/layout'
 import AddFAQ from 'src/app/addFAQ/addFAQ'
+import listStore from 'src/stores/ListStore'
 
 import styles from './page.module.css'
 
-export const Content = () => {
+interface Item {
+  id: number
+  title: string
+  answer: string
+  type: string
+}
+
+export const Content = observer(() => {
   const [activeTab, setActiveTab] = useState(0)
   const tabTitles = ['Priority FAQ(30)', 'Conflicting(30)', 'Unanswered(30)']
 
   const handleToggleTab = (index: number) => {
     setActiveTab(index)
+  }
+
+  const handleDelete = (item: Item) => {
+    listStore.removeItem(item.id)
   }
 
   return (
@@ -71,11 +83,7 @@ export const Content = () => {
             </div>
             <div className={styles.action}>
               <button className="button normal">Import Data</button>
-              <button className="button highlight button-icon">
-                <UploadIcon />
-                {/* <span onClick={handleAddFAQ}>Add FAQ</span> */}
-                <AddFAQ />
-              </button>
+              <AddFAQ />
             </div>
           </div>
 
@@ -98,95 +106,53 @@ export const Content = () => {
                 </div>
                 <div className={styles.faqList}>
                   <ol>
-                    <li>
-                      <div className={styles.faqListItemWrapper}>
-                        <div className={styles.faqListNumber}>1</div>
-                        <div className={styles.faqListText}>
-                          <div className={styles.faqListItemTitle}>
-                            What’s your function
+                    {listStore.items.map((item, index) => (
+                      <li key={index}>
+                        <div className={styles.faqListItemWrapper}>
+                          <div className={styles.faqListNumber}>
+                            {index + 1}
                           </div>
-                          <div className={styles.faqListItemContent}>
-                            Save time by using Informance AI to provide
-                            instantand reliable responses, so you can focus on
-                            growingyour community. Integrates to meet your users
-                            on both Discord and Telegram.
+                          <div className={styles.faqListText}>
+                            <div className={styles.faqListItemTitle}>
+                              {item.title}
+                            </div>
+                            <div className={styles.faqListItemContent}>
+                              {item.answer}
+                            </div>
                           </div>
-                        </div>
-                        <div className={styles.faqLisItemAction}>
-                          <button className="transparent">
-                            <EditIcon />
-                          </button>
-                          <button className="transparent">
-                            <DeleteIcon />
-                          </button>
-                        </div>
-                      </div>
-                    </li>
-                    <li>
-                      <div className={styles.faqListItemWrapper}>
-                        <div className={styles.faqListNumber}>2</div>
-                        <div className={styles.faqListText}>
-                          <div className={styles.faqListItemTitle}>
-                            What’s your function
-                          </div>
-                          <div className={styles.faqListItemContent}>
-                            Save time by using Informance AI to provide
-                            instantand reliable responses, so you can focus on
-                            growingyour community. Integrates to meet your users
-                            on both Discord and Telegram.
+                          <div className={styles.faqLisItemAction}>
+                            <button className="transparent">
+                              <EditIcon />
+                            </button>
+                            <button
+                              className="transparent"
+                              onClick={(e) => handleDelete(item)}
+                            >
+                              <DeleteIcon />
+                            </button>
                           </div>
                         </div>
-                        <div className={styles.faqLisItemAction}>
-                          <button className="transparent">
-                            <EditIcon />
-                          </button>
-                          <button className="transparent">
-                            <DeleteIcon />
-                          </button>
-                        </div>
-                      </div>
-                    </li>
-                    <li className="conflicted">
-                      <div className={styles.faqListItemWrapper}>
-                        <div className={styles.faqListNumber}>3</div>
-                        <div className={styles.faqListText}>
-                          <div className={styles.faqListItemTitle}>
-                            What’s your function
+                        {item.type === 'conflicted' && (
+                          <div className={`${styles.faqLisItemWarning}`}>
+                            <div
+                              className={`${styles.faqLisItemWarningHeight} warning`}
+                            >
+                              <div className={styles.iconWrapper}>
+                                <WarningIcon />
+                                <span className={styles.warningText}>
+                                  Causing a Conflict problem.
+                                </span>
+                              </div>
+                              <div>
+                                <a href="" className="action">
+                                  View now
+                                </a>
+                              </div>
+                            </div>
                           </div>
-                          <div className={styles.faqListItemContent}>
-                            Save time by using Informance AI to provide
-                            instantand reliable responses, so you can focus on
-                            growingyour community. Integrates to meet your users
-                            on both Discord and Telegram.
-                          </div>
-                        </div>
-                        <div className={styles.faqLisItemAction}>
-                          <button className="transparent">
-                            <EditIcon />
-                          </button>
-                          <button className="transparent">
-                            <DeleteIcon />
-                          </button>
-                        </div>
-                      </div>
-                      <div className={`${styles.faqLisItemWarning}`}>
-                        <div
-                          className={`${styles.faqLisItemWarningHeight} warning`}
-                        >
-                          <div className={styles.iconWrapper}>
-                            <WarningIcon />
-                            <span className={styles.warningText}>
-                              Causing a Conflict problem.
-                            </span>
-                          </div>
-                          <div>
-                            <a href="" className="action">
-                              View now
-                            </a>
-                          </div>
-                        </div>
-                      </div>
-                    </li>
+                        )}
+                      </li>
+                    ))}
                   </ol>
                 </div>
               </div>
@@ -199,4 +165,4 @@ export const Content = () => {
       </div>
     </div>
   )
-}
+})
